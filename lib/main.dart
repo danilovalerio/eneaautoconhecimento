@@ -4,21 +4,29 @@ main() {
   runApp(AutoConhecimentoEneaApp());
 }
 
-class AutoConhecimentoEneaApp extends StatelessWidget {
+class AutoConhecimentoEneaApp extends StatefulWidget {
 
   AutoConhecimentoEneaApp({Key? key}) : super(key: key);
 
-  var perguntaSelecionada = 0;
+  @override
+  State<AutoConhecimentoEneaApp> createState() => _AutoConhecimentoEneaAppState();
+}
 
-  void responder() {
-    perguntaSelecionada++;
-    print('$perguntaSelecionada');
+class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
+  var _perguntaSelecionada = 0;
+  final perguntas = ['Qual sua cor favorita?', 'Qual seu animal favorito?'];
+
+  void _responder() {
+    setState(() {
+      if(_perguntaSelecionada+1 < perguntas.length) {
+        _perguntaSelecionada++;
+      }
+    });
+    print('$_perguntaSelecionada');
   }
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = ['Qual sua cor favorita?', 'Qual seu animal favorito?'];
-
     final double heightSized = 15;
 
     return MaterialApp(
@@ -29,12 +37,13 @@ class AutoConhecimentoEneaApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(perguntas.elementAt(perguntaSelecionada)),
-            ElevatedButton(onPressed: responder, child: Text('Resposta 1')),
+            Text(perguntas.elementAt(_perguntaSelecionada)),
             SizedBox(height: heightSized),
-            ElevatedButton(onPressed: responder, child: Text('Resposta 2')),
+            ElevatedButton(onPressed: _responder, child: Text('Resposta 1')),
             SizedBox(height: heightSized),
-            ElevatedButton(onPressed: responder, child: Text('Resposta 3')),
+            ElevatedButton(onPressed: _responder, child: Text('Resposta 2')),
+            SizedBox(height: heightSized),
+            ElevatedButton(onPressed: _responder, child: Text('Resposta 3')),
             SizedBox(height: heightSized),
           ],
         ),

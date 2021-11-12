@@ -1,3 +1,4 @@
+import 'package:eneaautoconhecimento/question.dart';
 import 'package:flutter/material.dart';
 
 main() {
@@ -37,7 +38,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         ),
         body: Column(
           children: [
-            Text(perguntas.elementAt(_perguntaSelecionada)),
+            QuestionWidget(texto: perguntas.elementAt(_perguntaSelecionada)),
             SizedBox(height: heightSized),
             ElevatedButton(onPressed: _responder, child: Text('Resposta 1')),
             SizedBox(height: heightSized),

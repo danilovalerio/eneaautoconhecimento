@@ -1,4 +1,5 @@
 import 'package:eneaautoconhecimento/question.dart';
+import 'package:eneaautoconhecimento/response_question.dart';
 import 'package:flutter/material.dart';
 
 main() {
@@ -28,7 +29,6 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
 
   @override
   Widget build(BuildContext context) {
-    final double heightSized = 15;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -39,13 +39,11 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         body: Column(
           children: [
             QuestionWidget(texto: perguntas.elementAt(_perguntaSelecionada)),
-            SizedBox(height: heightSized),
-            ElevatedButton(onPressed: _responder, child: Text('Resposta 1')),
-            SizedBox(height: heightSized),
-            ElevatedButton(onPressed: _responder, child: Text('Resposta 2')),
-            SizedBox(height: heightSized),
-            ElevatedButton(onPressed: _responder, child: Text('Resposta 3')),
-            SizedBox(height: heightSized),
+            SizedBox(height: 15),
+            //TODO: Criar widget resposta
+            const ResponseQuestionWidget(texto: 'Resposta 1'),
+            const ResponseQuestionWidget(texto: 'Resposta 2'),
+            const ResponseQuestionWidget(texto: 'Resposta 3'),
           ],
         ),
       ),

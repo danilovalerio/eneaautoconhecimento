@@ -17,6 +17,11 @@ class AutoConhecimentoEneaApp extends StatefulWidget {
 class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   var _perguntaSelecionada = 0;
 
+  bool get temPerguntaSelecionada {
+    print("$_perguntaSelecionada é menor que ${_perguntas.length}");
+    return (_perguntaSelecionada+1 < _perguntas.length);
+  }
+
   /// Exemplo em json do Objeto
   /// {
   ///    'texto' : 'Qual seu sexo?',
@@ -26,7 +31,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   ///        'opcao':'outro',
   ///     ]
   /// }
-  final perguntas = [
+  final _perguntas = const [
     {
       'texto': 'Qual sua cor favorita?',
       'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
@@ -43,24 +48,24 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   ];
 
   void _responder() {
-    setState(() {
-      if (_perguntaSelecionada + 1 < perguntas.length) {
+    if (temPerguntaSelecionada) {
+      setState(() {
         _perguntaSelecionada++;
-      }
-    });
-    print('$_perguntaSelecionada');
+      });
+    }
+    print('pergunta selecionada: $_perguntaSelecionada');
   }
 
   @override
   Widget build(BuildContext context) {
     List<String> respostas =
-        perguntas[_perguntaSelecionada].cast()['respostas'];
+        _perguntas[_perguntaSelecionada].cast()['respostas'];
 
     ///Para transformar listas utilizamos o MAP, para cada resposta retorna um ResponseQuestionWidget
-    List<Widget> widgets = respostas
-        .map((item) =>
-            ResponseQuestionWidget(texto: item, quandoSelecionado: _responder))
-        .toList();
+    // List<Widget> widgets = respostas
+    //     .map((item) =>
+    //         ResponseQuestionWidget(texto: item, quandoSelecionado: _responder))
+    //     .toList();
 
     //Programação imperativa
     // for(var textoResp in respostas) {
@@ -74,22 +79,30 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         appBar: AppBar(
           title: Text('Auto Conhecimento - Eneagrama'),
         ),
-        body: Column(
-          children: [
-            QuestionWidget(
-                texto: perguntas[_perguntaSelecionada]['texto'].toString()),
-            SizedBox(height: 15),
-            //TODO: Criar widget resposta
-            // for (String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
-            //   respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder))
-            // }
-            ///... Operador spread que coloca os elementos da lista respostas
-            ...respostas
-                .map((item) => ResponseQuestionWidget(
-                    texto: item, quandoSelecionado: _responder))
-                .toList(),
-          ],
-        ),
+        body: temPerguntaSelecionada
+            ? Column(
+                children: [
+                  QuestionWidget(
+                      texto:
+                          _perguntas[_perguntaSelecionada]['texto'].toString()),
+                  SizedBox(height: 15),
+                  //TODO: Criar widget resposta
+                  // for (String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
+                  //   respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder))
+                  // }
+                  ///... Operador spread que coloca os elementos da lista respostas
+                  ...respostas
+                      .map((item) => ResponseQuestionWidget(
+                          texto: item, quandoSelecionado: _responder))
+                      .toList(),
+                ],
+              )
+            : Center(
+                child: Text(
+                  'Parabéns!',
+                  style: TextStyle(fontSize: 28),
+                ),
+              ),
       ),
     );
   }

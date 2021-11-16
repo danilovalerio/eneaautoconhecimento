@@ -60,51 +60,20 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas =
-    _perguntas[_perguntaSelecionada].cast()['respostas'];
-
-    ///Para transformar listas utilizamos o MAP, para cada resposta retorna um ResponseQuestionWidget
-    // List<Widget> widgets = respostas
-    //     .map((item) =>
-    //         ResponseQuestionWidget(texto: item, quandoSelecionado: _responder))
-    //     .toList();
-
-    //Programação imperativa
-    // for(var textoResp in respostas) {
-    //   print(textoResp);
-    //   widgets.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder));
-    // }
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Auto Conhecimento - Eneagrama'),
-          ),
-          body: temPerguntaSelecionada
-              ? QuizWidget(
-              titleQuestion: _perguntas[_perguntaSelecionada]['texto']
-                  .toString(),
-              optionsAnswers: respostas,
-              itemSelecionado: _responder)
-          // Column(
-          //         children: [
-          //           QuestionWidget(
-          //               texto:
-          //                   _perguntas[_perguntaSelecionada]['texto'].toString()),
-          //           SizedBox(height: 15),
-          //           //TODO: Criar widget resposta
-          //           // for (String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
-          //           //   respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder))
-          //           // }
-          //           ///... Operador spread que coloca os elementos da lista respostas
-          //           ...respostas
-          //               .map((item) => ResponseQuestionWidget(
-          //                   texto: item, quandoSelecionado: _responder))
-          //               .toList(),
-          //         ],
-          //       )
-              : const ResultWidget(),
-    ),);
+        appBar: AppBar(
+          title: Text('Auto Conhecimento - Eneagrama'),
+        ),
+        body: temPerguntaSelecionada
+            ? QuizWidget(
+                perguntaSelecionada: _perguntaSelecionada,
+                questions: _perguntas,
+                quandoResponder: _responder,
+              )
+            : const ResultWidget(),
+      ),
+    );
   }
 }

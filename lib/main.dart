@@ -90,7 +90,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
                 questions: _perguntas,
                 quandoResponder: _responder,
               )
-            : const ResultWidget(),
+            : ResultWidget(pontuacao: _pontuacaoTotal),
       ),
     );
   }

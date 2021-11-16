@@ -1,5 +1,6 @@
 import 'package:eneaautoconhecimento/question.dart';
 import 'package:eneaautoconhecimento/response_question.dart';
+import 'package:eneaautoconhecimento/result_widget.dart';
 import 'package:flutter/material.dart';
 
 main() {
@@ -97,12 +98,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
                       .toList(),
                 ],
               )
-            : Center(
-                child: Text(
-                  'Parabéns!',
-                  style: TextStyle(fontSize: 28),
-                ),
-              ),
+            : const ResultWidget(),
       ),
     );
   }

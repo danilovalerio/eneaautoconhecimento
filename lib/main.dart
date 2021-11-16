@@ -54,12 +54,13 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   @override
   Widget build(BuildContext context) {
 
-    List<Widget> respostas = [];
+    List<String> respostas = perguntas[_perguntaSelecionada].cast()['respostas']
+    List<Widget> widgets = [];
 
     //Programação imperativa
-    for(var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
+    for(var textoResp in respostas) {
       print(textoResp);
-      respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder));
+      widgets.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder));
     }
 
     return MaterialApp(
@@ -77,7 +78,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
             //   respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder))
             // }
             ///... Operador spread que coloca os elementos da lista respostas
-            ...respostas,
+            ...widgets,
           ],
         ),
       ),

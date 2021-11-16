@@ -41,9 +41,9 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
             QuestionWidget(texto: perguntas.elementAt(_perguntaSelecionada)),
             SizedBox(height: 15),
             //TODO: Criar widget resposta
-            const ResponseQuestionWidget(texto: 'Resposta 1'),
-            const ResponseQuestionWidget(texto: 'Resposta 2'),
-            const ResponseQuestionWidget(texto: 'Resposta 3'),
+            ResponseQuestionWidget(texto: 'Resposta 1', quandoSelecionado: _responder,),
+            ResponseQuestionWidget(texto: 'Resposta 2', quandoSelecionado: _responder,),
+            ResponseQuestionWidget(texto: 'Resposta 3', quandoSelecionado: _responder,),
           ],
         ),
       ),

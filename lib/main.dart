@@ -7,20 +7,44 @@ main() {
 }
 
 class AutoConhecimentoEneaApp extends StatefulWidget {
-
   AutoConhecimentoEneaApp({Key? key}) : super(key: key);
 
   @override
-  State<AutoConhecimentoEneaApp> createState() => _AutoConhecimentoEneaAppState();
+  State<AutoConhecimentoEneaApp> createState() =>
+      _AutoConhecimentoEneaAppState();
 }
 
 class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   var _perguntaSelecionada = 0;
-  final perguntas = ['Qual sua cor favorita?', 'Qual seu animal favorito?'];
+
+  /// Exemplo em json do Objeto
+  /// {
+  ///    'texto' : 'Qual seu sexo?',
+  ///    'opcoes' : [
+  ///        'opcao':'Masc',
+  ///        'opcao':'Fem',
+  ///        'opcao':'outro',
+  ///     ]
+  /// }
+  final perguntas = [
+    {
+      'texto': 'Qual sua cor favorita?',
+      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+    },
+    {
+      'texto': 'Qual seu animal favorito?',
+      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    },
+    {
+      //chave texto e valor titulo
+      'texto': 'Qual seu instrutor favorito?',
+      'respostas': ['Maria', 'João', 'Antonio', 'Luiz'],
+    },
+  ];
 
   void _responder() {
     setState(() {
-      if(_perguntaSelecionada+1 < perguntas.length) {
+      if (_perguntaSelecionada + 1 < perguntas.length) {
         _perguntaSelecionada++;
       }
     });
@@ -30,6 +54,14 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   @override
   Widget build(BuildContext context) {
 
+    List<Widget> respostas = [];
+
+    //Programação imperativa
+    for(var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
+      print(textoResp);
+      respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder));
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -38,12 +70,14 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         ),
         body: Column(
           children: [
-            QuestionWidget(texto: perguntas.elementAt(_perguntaSelecionada)),
+            QuestionWidget(texto: perguntas[_perguntaSelecionada]['texto'].toString()),
             SizedBox(height: 15),
             //TODO: Criar widget resposta
-            ResponseQuestionWidget(texto: 'Resposta 1', quandoSelecionado: _responder,),
-            ResponseQuestionWidget(texto: 'Resposta 2', quandoSelecionado: _responder,),
-            ResponseQuestionWidget(texto: 'Resposta 3', quandoSelecionado: _responder,),
+            // for (String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
+            //   respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder))
+            // }
+            ///... Operador spread que coloca os elementos da lista respostas
+            ...respostas,
           ],
         ),
       ),

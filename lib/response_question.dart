@@ -20,6 +20,7 @@ class ResponseQuestionWidget extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.all(10),
+      width: double.infinity,
       child: ElevatedButton(
         onPressed: quandoSelecionado,
         child: Text(texto),

@@ -36,16 +36,31 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   final _perguntas = const [
     {
       'texto': 'Qual sua cor favorita?',
-      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      'respostas': [
+        {'texto': 'preto', 'pontuacao': 10},
+        {'texto': 'azul', 'pontuacao': 10},
+        {'texto': 'rosa', 'pontuacao': 10},
+        {'texto': 'vermelho', 'pontuacao': 10},
+      ],
     },
     {
       'texto': 'Qual seu animal favorito?',
-      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      'respostas': [
+        {'texto': 'coelho', 'pontuacao': 10},
+        {'texto': 'cobra', 'pontuacao': 10},
+        {'texto': 'elefante', 'pontuacao': 10},
+        {'texto': 'leão', 'pontuacao': 10},
+      ],
     },
     {
       //chave texto e valor titulo
       'texto': 'Qual seu instrutor favorito?',
-      'respostas': ['Maria', 'João', 'Antonio', 'Luiz'],
+      'respostas': [
+        {'texto': 'maria', 'pontuacao': 10},
+        {'texto': 'joão', 'pontuacao': 10},
+        {'texto': 'antonio', 'pontuacao': 10},
+        {'texto': 'luiz', 'pontuacao': 10},
+      ],
     },
   ];
 

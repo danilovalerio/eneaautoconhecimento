@@ -21,7 +21,8 @@ class QuizWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = questions[perguntaSelecionada].cast()['respostas'];
+    List<Map<String, Object>> respostas =
+        questions[perguntaSelecionada].cast()['respostas'];
 
     return Column(
       children: <Widget>[
@@ -32,7 +33,7 @@ class QuizWidget extends StatelessWidget {
         ///... Operador spread que coloca os elementos da lista respostas
         ...respostas
             .map((item) => ResponseQuestionWidget(
-                texto: item, quandoSelecionado: quandoResponder))
+                texto: item['texto'].toString(), quandoSelecionado: quandoResponder))
             .toList(),
       ],
     );

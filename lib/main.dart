@@ -53,15 +53,20 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> respostas =
+        perguntas[_perguntaSelecionada].cast()['respostas'];
 
-    List<String> respostas = perguntas[_perguntaSelecionada].cast()['respostas']
-    List<Widget> widgets = [];
+    ///Para transformar listas utilizamos o MAP, para cada resposta retorna um ResponseQuestionWidget
+    List<Widget> widgets = respostas
+        .map((item) =>
+            ResponseQuestionWidget(texto: item, quandoSelecionado: _responder))
+        .toList();
 
     //Programação imperativa
-    for(var textoResp in respostas) {
-      print(textoResp);
-      widgets.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder));
-    }
+    // for(var textoResp in respostas) {
+    //   print(textoResp);
+    //   widgets.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder));
+    // }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -71,14 +76,18 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         ),
         body: Column(
           children: [
-            QuestionWidget(texto: perguntas[_perguntaSelecionada]['texto'].toString()),
+            QuestionWidget(
+                texto: perguntas[_perguntaSelecionada]['texto'].toString()),
             SizedBox(height: 15),
             //TODO: Criar widget resposta
             // for (String textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
             //   respostas.add(ResponseQuestionWidget(texto: textoResp, quandoSelecionado: _responder))
             // }
             ///... Operador spread que coloca os elementos da lista respostas
-            ...widgets,
+            ...respostas
+                .map((item) => ResponseQuestionWidget(
+                    texto: item, quandoSelecionado: _responder))
+                .toList(),
           ],
         ),
       ),

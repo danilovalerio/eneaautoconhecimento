@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class QuizWidget extends StatelessWidget {
   final List<Map<String, Object>> questions;
   final int perguntaSelecionada;
-  final void Function() quandoResponder;
+  final void Function(int) quandoResponder;
 
   const QuizWidget({
     Key? key,
@@ -32,9 +32,12 @@ class QuizWidget extends StatelessWidget {
 
         ///... Operador spread que coloca os elementos da lista respostas
         ...respostas
-            .map((item) => ResponseQuestionWidget(
-                texto: item['texto'].toString(), quandoSelecionado: quandoResponder))
-            .toList(),
+            .map((item) {
+          return ResponseQuestionWidget(
+              texto: item['texto'].toString(),
+              quandoSelecionado: () => quandoResponder(
+                  int.parse(item['pontuacao'].toString())));
+        }).toList(),
       ],
     );
   }

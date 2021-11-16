@@ -18,6 +18,7 @@ class AutoConhecimentoEneaApp extends StatefulWidget {
 
 class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
 
   bool get temPerguntaSelecionada {
     print("$_perguntaSelecionada é menor que ${_perguntas.length}");
@@ -64,13 +65,15 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
     },
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal+= pontuacao;
       });
     }
     print('pergunta selecionada: $_perguntaSelecionada');
+    print('pontuacao total: $_pontuacaoTotal');
   }
 
   @override

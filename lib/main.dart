@@ -4,6 +4,8 @@ import 'package:eneaautoconhecimento/response_question.dart';
 import 'package:eneaautoconhecimento/result_widget.dart';
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
+
 main() {
   runApp(AutoConhecimentoEneaApp());
 }
@@ -17,63 +19,31 @@ class AutoConhecimentoEneaApp extends StatefulWidget {
 }
 
 class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
-  var _perguntaSelecionada = 0;
+  var _perguntaAtual = 0;
   var _pontuacaoTotal = 0;
 
   bool get temPerguntaSelecionada {
-    print("$_perguntaSelecionada é menor que ${_perguntas.length}");
-    return (_perguntaSelecionada + 1 < _perguntas.length);
+    print("$_perguntaAtual é menor que ${perguntas.length}");
+    return (_perguntaAtual < perguntas.length);
   }
 
-  /// Exemplo em json do Objeto
-  /// {
-  ///    'texto' : 'Qual seu sexo?',
-  ///    'opcoes' : [
-  ///        'opcao':'Masc',
-  ///        'opcao':'Fem',
-  ///        'opcao':'outro',
-  ///     ]
-  /// }
-  final _perguntas = const [
-    {
-      'texto': 'Qual sua cor favorita?',
-      'respostas': [
-        {'texto': 'preto', 'pontuacao': 10},
-        {'texto': 'azul', 'pontuacao': 10},
-        {'texto': 'rosa', 'pontuacao': 10},
-        {'texto': 'vermelho', 'pontuacao': 10},
-      ],
-    },
-    {
-      'texto': 'Qual seu animal favorito?',
-      'respostas': [
-        {'texto': 'coelho', 'pontuacao': 10},
-        {'texto': 'cobra', 'pontuacao': 10},
-        {'texto': 'elefante', 'pontuacao': 10},
-        {'texto': 'leão', 'pontuacao': 10},
-      ],
-    },
-    {
-      //chave texto e valor titulo
-      'texto': 'Qual seu instrutor favorito?',
-      'respostas': [
-        {'texto': 'maria', 'pontuacao': 10},
-        {'texto': 'joão', 'pontuacao': 10},
-        {'texto': 'antonio', 'pontuacao': 10},
-        {'texto': 'luiz', 'pontuacao': 10},
-      ],
-    },
-  ];
-
   void _responder(int pontuacao) {
+    print("tem pergunta atualmente: $temPerguntaSelecionada");
     if (temPerguntaSelecionada) {
       setState(() {
-        _perguntaSelecionada++;
-        _pontuacaoTotal+= pontuacao;
+        _perguntaAtual++;
+        _pontuacaoTotal += pontuacao;
       });
     }
-    print('pergunta selecionada: $_perguntaSelecionada');
+    print('pergunta selecionada: $_perguntaAtual');
     print('pontuacao total: $_pontuacaoTotal');
+  }
+
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaAtual = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   @override
@@ -86,11 +56,14 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         ),
         body: temPerguntaSelecionada
             ? QuizWidget(
-                perguntaSelecionada: _perguntaSelecionada,
-                questions: _perguntas,
+                perguntaSelecionada: _perguntaAtual,
+                questions: perguntas,
                 quandoResponder: _responder,
               )
-            : ResultWidget(pontuacao: _pontuacaoTotal),
+            : ResultWidget(
+                pontuacao: _pontuacaoTotal,
+                restart: _reiniciarQuestionario,
+              ),
       ),
     );
   }

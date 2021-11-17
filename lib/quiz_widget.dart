@@ -16,7 +16,7 @@ class QuizWidget extends StatelessWidget {
 
   bool get temPerguntaSelecionada {
     print("$perguntaSelecionada é menor que ${questions.length}");
-    return (perguntaSelecionada + 1 < questions.length);
+    return (perguntaSelecionada < questions.length);
   }
 
   @override
@@ -31,12 +31,12 @@ class QuizWidget extends StatelessWidget {
         SizedBox(height: 15),
 
         ///... Operador spread que coloca os elementos da lista respostas
-        ...respostas
-            .map((item) {
+        ...respostas.map((item) {
           return ResponseQuestionWidget(
               texto: item['texto'].toString(),
-              quandoSelecionado: () => quandoResponder(
-                  int.parse(item['pontuacao'].toString())));
+              quandoSelecionado: () => quandoResponder(int.parse(
+                    item['pontuacao'].toString(),
+                  )));
         }).toList(),
       ],
     );

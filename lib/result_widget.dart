@@ -1,3 +1,4 @@
+import 'package:eneaautoconhecimento/constants.dart';
 import 'package:flutter/material.dart';
 import 'helper.dart';
 
@@ -24,19 +25,20 @@ class ResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
+      child: ListView(
+        padding: EdgeInsets.all(20),
         children: [
           SizedBox(height: 20),
+          // Text(
+          //   fraseResultado.toUpperCase(),
+          //   style: TextStyle(fontSize: 28),
+          // ),
+          // Text(
+          //   'Total da sua pontuação foi: $pontuacao',
+          //   style: TextStyle(fontSize: 28),
+          // ),
           Text(
-            fraseResultado.toUpperCase(),
-            style: TextStyle(fontSize: 28),
-          ),
-          Text(
-            'Total da sua pontuação foi: $pontuacao',
-            style: TextStyle(fontSize: 28),
-          ),
-          Text(
-            'Enea escolhido foi: ${maiorValorLista(pontuacaoEnea)}',
+            'Seu E-tipo: ${resultsOptions[maiorValorLista(pontuacaoEnea)]}',
             style: TextStyle(fontSize: 28),
           ),
           Text(

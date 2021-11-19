@@ -1,6 +1,4 @@
-import 'package:eneaautoconhecimento/question.dart';
 import 'package:eneaautoconhecimento/quiz_widget.dart';
-import 'package:eneaautoconhecimento/response_question.dart';
 import 'package:eneaautoconhecimento/result_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +21,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
   var _perguntaAtual = 0;
   var _pontuacaoTotal = 0;
   List<int> _pontuacaoEnea = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  bool _iniciou = false;
 
   bool get temPerguntaSelecionada {
     print("$_perguntaAtual é menor que ${perguntas.length}");
@@ -49,7 +48,16 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
       _perguntaAtual = 0;
       _pontuacaoTotal = 0;
       _pontuacaoEnea = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      _iniciou = false;
     });
+  }
+
+  void _iniciarQuestionario() {
+    print("Iniciar questionario...$_iniciou");
+    setState(() {
+      _iniciou = true;
+    });
+    print("Iniciar questionario...$_iniciou");
   }
 
   @override
@@ -60,18 +68,74 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         appBar: AppBar(
           title: Text('Auto Conhecimento - Eneagrama'),
         ),
-        body: temPerguntaSelecionada
-            ? QuizWidget(
-                perguntaSelecionada: _perguntaAtual,
-                questions: perguntas,
-                quandoResponder: _responder,
+        body: !_iniciou
+            ? Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: RichText(
+                      text: const TextSpan(children: [
+                        TextSpan(
+                            text: 'TESTE DISTRIBUTIVO DO ENEAGRAMA\n\n',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: """
+Este teste, mostrará a distribuição de suas orientações com relação a cada E-tipo (ego). \n
+Nas perguntas a seguir, escolha apenas uma das alternativas, a que mais reflete sua maneira de ser.\n
+Escolha a mais marcante ao longo da sua vida. Algo que seja mais significativo para você.\n
+"""),
+                        TextSpan(
+                            text: 'Observação:',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: """
+ Não há padrão no posicionamento das alternativas.\n
+              """),
+                      ]),
+                    ),
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      onPressed: _iniciarQuestionario,
+                      child: Text('INICIAR'),
+                    ),
+                  ),
+                ],
               )
-            : ResultWidget(
-                pontuacao: _pontuacaoTotal,
-                restart: _reiniciarQuestionario,
-                pontuacaoEnea: _pontuacaoEnea,
+            : Scaffold(
+                body: temPerguntaSelecionada
+                    ? QuizWidget(
+                        perguntaSelecionada: _perguntaAtual,
+                        questions: perguntas,
+                        quandoResponder: _responder,
+                      )
+                    : ResultWidget(
+                        pontuacao: _pontuacaoTotal,
+                        restart: _reiniciarQuestionario,
+                        pontuacaoEnea: _pontuacaoEnea,
+                      ),
               ),
       ),
     );
   }
+// @override
+// Widget build(BuildContext context) {
+//   return MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: Scaffold(
+//       appBar: AppBar(
+//         title: Text('Auto Conhecimento - Eneagrama'),
+//       ),
+//       body: temPerguntaSelecionada
+//           ? QuizWidget(
+//               perguntaSelecionada: _perguntaAtual,
+//               questions: perguntas,
+//               quandoResponder: _responder,
+//             )
+//           : ResultWidget(
+//               pontuacao: _pontuacaoTotal,
+//               restart: _reiniciarQuestionario,
+//               pontuacaoEnea: _pontuacaoEnea,
+//             ),
+//     ),
+//   );
+// }
 }

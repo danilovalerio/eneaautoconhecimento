@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'helper.dart';
 
 class ResultWidget extends StatelessWidget {
   final int pontuacao;
   final void Function() restart;
+  final List<int> pontuacaoEnea;
 
   String get fraseResultado {
     if (pontuacao < 10) {
@@ -16,6 +18,7 @@ class ResultWidget extends StatelessWidget {
     Key? key,
     required this.pontuacao,
     required this.restart,
+    required this.pontuacaoEnea,
   }) : super(key: key);
 
   @override
@@ -30,6 +33,14 @@ class ResultWidget extends StatelessWidget {
           ),
           Text(
             'Total da sua pontuação foi: $pontuacao',
+            style: TextStyle(fontSize: 28),
+          ),
+          Text(
+            'Enea escolhido foi: ${maiorValorLista(pontuacaoEnea)}',
+            style: TextStyle(fontSize: 28),
+          ),
+          Text(
+            summaryList(title: "Enea", lista: pontuacaoEnea),
             style: TextStyle(fontSize: 28),
           ),
           SizedBox(height: 20),

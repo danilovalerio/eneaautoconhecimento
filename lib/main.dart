@@ -19,6 +19,7 @@ class AutoConhecimentoEneaApp extends StatefulWidget {
 }
 
 class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
+  static const valorAoEscolher = 1;
   var _perguntaAtual = 0;
   var _pontuacaoTotal = 0;
   List<int> _pontuacaoEnea = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -35,7 +36,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         _perguntaAtual++;
         _pontuacaoTotal += pontuacao;
         var somaValor = _pontuacaoEnea[pontuacao];
-        _pontuacaoEnea[pontuacao] = somaValor + 1;
+        _pontuacaoEnea[pontuacao] = somaValor + valorAoEscolher;
       });
     }
     print('pergunta selecionada: $_perguntaAtual');

@@ -1,11 +1,8 @@
-import 'package:eneaautoconhecimento/eneagrama_model.dart';
 import 'package:eneaautoconhecimento/quiz_widget.dart';
 import 'package:eneaautoconhecimento/result_widget.dart';
 import 'package:eneaautoconhecimento/styles_theme.dart';
-import 'package:eneaautoconhecimento/styles_theme.dart';
-import 'package:eneaautoconhecimento/tipo_enea_widget.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'constants.dart';
 
 main() {

@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:eneaautoconhecimento/styles_theme.dart';
 import 'package:flutter/material.dart';
 
 class ResponseQuestionWidget extends StatelessWidget {
@@ -12,11 +13,6 @@ class ResponseQuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style = ElevatedButton.styleFrom(
-        textStyle: const TextStyle(
-      fontSize: 20,
-      color: Colors.white,
-    ));
 
     return Container(
       margin: EdgeInsets.all(10),
@@ -24,6 +20,7 @@ class ResponseQuestionWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: quandoSelecionado,
         child: Text(texto),
+        style: styleBtnResponse,
       ),
     );
   }

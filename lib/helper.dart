@@ -18,7 +18,7 @@ String summaryList({String? title, required List<int> lista}) {
   String msg = "";
   String nameItem = title ?? "item";
   for(var i = 1; i < lista.length; i++) {
-    msg = "$msg $nameItem $i: ${lista[i]}\n";
+    msg = "$msg$nameItem $i: ${lista[i]}\n";
   }
   return msg;
 }

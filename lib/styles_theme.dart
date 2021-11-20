@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 
-TextStyle title = const TextStyle(
+const TextStyle titleText = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );
 
-TextStyle subTitle = const TextStyle(
+const TextStyle subTitle = TextStyle(
   fontSize: 14,
 );
 
-TextStyle textOne = const TextStyle(
+const TextStyle subTitleBold = TextStyle(
+  fontWeight: FontWeight.bold,
   fontSize: 14,
 );
+
+
+const TextStyle textBodyOne = TextStyle(
+  fontSize: 14,
+);
+
+final ButtonStyle styleBtnResponse = ElevatedButton.styleFrom(
+    textStyle: const TextStyle(
+  fontSize: 16,
+  color: Colors.white,
+));

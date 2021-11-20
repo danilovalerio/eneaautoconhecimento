@@ -1,3 +1,4 @@
+import 'package:eneaautoconhecimento/styles_theme.dart';
 import 'package:flutter/material.dart';
 
 class QuestionWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class QuestionWidget extends StatelessWidget {
       margin: EdgeInsets.all(10),
       child: Text(
         texto,
-        style: TextStyle(fontSize: 28),
+        style: titleText,
         textAlign: TextAlign.center,
       ),
     );

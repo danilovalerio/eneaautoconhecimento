@@ -18,11 +18,11 @@ class TipoEneagramaWidget extends StatelessWidget {
         text: TextSpan(children: [
           TextSpan(
             text: '${eneagrama.title}\n',
-            style: title,
+            style: titleText,
           ),
           TextSpan(
             text: eneagrama.description,
-            style: textOne,
+            style: textBodyOne,
           ),
         ]),
         textAlign: TextAlign.justify,

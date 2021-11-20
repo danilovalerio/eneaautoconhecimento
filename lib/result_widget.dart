@@ -36,8 +36,12 @@ class ResultWidget extends StatelessWidget {
             title: resultsOptions[maiorValorLista(pontuacaoEnea)].title,
             description: resultsOptions[maiorValorLista(pontuacaoEnea)].description,
           )),
+          const Text(
+            'Resumo da pontuação:',
+            style: subTitleBold,
+          ),
           Text(
-            summaryList(title: "Enea", lista: pontuacaoEnea),
+            summaryList(title:"Enea", lista: pontuacaoEnea),
             style: subTitle,
           ),
           SizedBox(height: 20),

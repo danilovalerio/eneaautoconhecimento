@@ -1,5 +1,7 @@
+import 'package:eneaautoconhecimento/eneagrama_model.dart';
 import 'package:eneaautoconhecimento/quiz_widget.dart';
 import 'package:eneaautoconhecimento/result_widget.dart';
+import 'package:eneaautoconhecimento/tipo_enea_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -68,6 +70,11 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         appBar: AppBar(
           title: Text('Auto Conhecimento - Eneagrama'),
         ),
+        /*body: TipoEneagramaWidget(
+          eneagrama: EneagramaModel(
+              title: "Meu título",
+              description: "Minha descrição personalizada..."),
+        ),*/
         body: !_iniciou
             ? Column(
                 children: <Widget>[
@@ -116,26 +123,4 @@ Escolha a mais marcante ao longo da sua vida. Algo que seja mais significativo p
       ),
     );
   }
-// @override
-// Widget build(BuildContext context) {
-//   return MaterialApp(
-//     debugShowCheckedModeBanner: false,
-//     home: Scaffold(
-//       appBar: AppBar(
-//         title: Text('Auto Conhecimento - Eneagrama'),
-//       ),
-//       body: temPerguntaSelecionada
-//           ? QuizWidget(
-//               perguntaSelecionada: _perguntaAtual,
-//               questions: perguntas,
-//               quandoResponder: _responder,
-//             )
-//           : ResultWidget(
-//               pontuacao: _pontuacaoTotal,
-//               restart: _reiniciarQuestionario,
-//               pontuacaoEnea: _pontuacaoEnea,
-//             ),
-//     ),
-//   );
-// }
 }

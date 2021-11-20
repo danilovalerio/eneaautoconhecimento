@@ -1,4 +1,7 @@
 import 'package:eneaautoconhecimento/constants.dart';
+import 'package:eneaautoconhecimento/eneagrama_model.dart';
+import 'package:eneaautoconhecimento/styles_theme.dart';
+import 'package:eneaautoconhecimento/tipo_enea_widget.dart';
 import 'package:flutter/material.dart';
 import 'helper.dart';
 
@@ -29,21 +32,13 @@ class ResultWidget extends StatelessWidget {
         padding: EdgeInsets.all(20),
         children: [
           SizedBox(height: 20),
-          // Text(
-          //   fraseResultado.toUpperCase(),
-          //   style: TextStyle(fontSize: 28),
-          // ),
-          // Text(
-          //   'Total da sua pontuação foi: $pontuacao',
-          //   style: TextStyle(fontSize: 28),
-          // ),
-          Text(
-            'Seu E-tipo: ${resultsOptions[maiorValorLista(pontuacaoEnea)]}',
-            style: TextStyle(fontSize: 28),
-          ),
+          TipoEneagramaWidget(eneagrama: EneagramaModel(
+            title: resultsOptions[maiorValorLista(pontuacaoEnea)].title,
+            description: resultsOptions[maiorValorLista(pontuacaoEnea)].description,
+          )),
           Text(
             summaryList(title: "Enea", lista: pontuacaoEnea),
-            style: TextStyle(fontSize: 28),
+            style: subTitle,
           ),
           SizedBox(height: 20),
           ElevatedButton(

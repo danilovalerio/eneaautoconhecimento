@@ -76,50 +76,49 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
         ),*/
         body: !_iniciou
             ? Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(20),
-              child: RichText(
-                text: TextSpan(children: [
-                    TextSpan(
-                    text: 'TESTE DISTRIBUTIVO DO ENEAGRAMA\n\n',
-                    style: titleText),
-                    TextSpan(text: """
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: 'TESTE DISTRIBUTIVO DO ENEAGRAMA\n\n',
+                          style: titleText,
+                        ),
+                        TextSpan(text: """
 Este teste, mostrará a distribuição de suas orientações com relação a cada E-tipo (ego). \n
 Nas perguntas a seguir, escolha apenas uma das alternativas, a que mais reflete sua maneira de ser.\n
 Escolha a mais marcante ao longo da sua vida. Algo que seja mais significativo para você.\n
-""",
-                    style: textBodyOne),
-                    TextSpan(
-                        text: 'Observação:',
-                        style: subTitle),
-                    TextSpan(text: """
+""", style: textBodyOne),
+                        TextSpan(text: 'Observação:', style: subTitle),
+                        TextSpan(text: """
  Não há padrão no posicionamento das alternativas.\n
-              """),
-                    ]),
-              ),
-            ),
-            Container(
-              child: ElevatedButton(
-                onPressed: _iniciarQuestionario,
-                child: Text('INICIAR'),
-              ),
-            ),
-          ],
-        )
+              """, style: textBodyOne),
+                      ]),
+                    ),
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                      onPressed: _iniciarQuestionario,
+                      child: Text('INICIAR'),
+                    ),
+                  ),
+                ],
+              )
             : Scaffold(
-          body: temPerguntaSelecionada
-              ? QuizWidget(
-            perguntaSelecionada: _perguntaAtual,
-            questions: perguntas,
-            quandoResponder: _responder,
-          )
-              : ResultWidget(
-            pontuacao: _pontuacaoTotal,
-            restart: _reiniciarQuestionario,
-            pontuacaoEnea: _pontuacaoEnea,
-          ),
-        ),
+                body: temPerguntaSelecionada
+                    ? QuizWidget(
+                        perguntaSelecionada: _perguntaAtual,
+                        questions: perguntas,
+                        quandoResponder: _responder,
+                      )
+                    : ResultWidget(
+                        pontuacao: _pontuacaoTotal,
+                        restart: _reiniciarQuestionario,
+                        pontuacaoEnea: _pontuacaoEnea,
+                      ),
+                //   : MyHomePageDois(title: "title"),
+              ),
       ),
     );
   }

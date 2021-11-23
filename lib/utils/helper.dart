@@ -22,3 +22,12 @@ String summaryList({String? title, required List<int> lista}) {
   }
   return msg;
 }
+
+bool showSharedMobile(context) {
+  String plat = Theme.of(context).platform.toString();
+  // if(Platform.isAndroid || Platform.isIOS || Platform.isFuchsia) {
+  //   return true;
+  // }
+  // return false;
+  return true;
+}

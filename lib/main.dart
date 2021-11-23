@@ -1,6 +1,7 @@
 import 'package:eneaautoconhecimento/quiz_widget.dart';
 import 'package:eneaautoconhecimento/result_widget.dart';
 import 'package:eneaautoconhecimento/styles_theme.dart';
+import 'package:eneaautoconhecimento/utils/responsive_layout.dart';
 
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -63,13 +64,19 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Auto Conhecimento - Eneagrama'),
         ),
-        /*body: TipoEneagramaWidget(
+        /* TODO: Remover depois do app ok, tesde de componente
+        body: TipoEneagramaWidget(
           eneagrama: EneagramaModel(
               title: "Meu título",
               description: "Minha descrição personalizada..."),
@@ -90,7 +97,7 @@ Este teste, mostrará a distribuição de suas orientações com relação a cad
 Nas perguntas a seguir, escolha apenas uma das alternativas, a que mais reflete sua maneira de ser.\n
 Escolha a mais marcante ao longo da sua vida. Algo que seja mais significativo para você.\n
 """, style: textBodyOne),
-                        TextSpan(text: 'Observação:', style: subTitle),
+                        TextSpan(text: 'Observação:', style: subTitleBold),
                         TextSpan(text: """
  Não há padrão no posicionamento das alternativas.\n
               """, style: textBodyOne),
@@ -101,6 +108,7 @@ Escolha a mais marcante ao longo da sua vida. Algo que seja mais significativo p
                     child: ElevatedButton(
                       onPressed: _iniciarQuestionario,
                       child: Text('INICIAR'),
+                      style: styleBtnResponse,
                     ),
                   ),
                 ],

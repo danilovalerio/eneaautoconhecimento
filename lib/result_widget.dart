@@ -43,6 +43,7 @@ class _ResultWidgetState extends State<ResultWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: ListView(
+        padding: const EdgeInsets.all(12),
         children: [
           RepaintBoundary(
             key: previewContainer,
@@ -50,7 +51,6 @@ class _ResultWidgetState extends State<ResultWidget> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white),
-              padding: EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Column(
@@ -77,8 +77,6 @@ class _ResultWidgetState extends State<ResultWidget> {
               ),
             ),
           ),
-          SizedBox(height: 20),
-          //ImagePreviews(imagePaths, onDelete: _onDeleteImage),
           ElevatedButton(
             onPressed: () {
               //TODO: melhorar o nome e testar na web
@@ -91,17 +89,15 @@ class _ResultWidgetState extends State<ResultWidget> {
                   text: "Eneagrama compartilhado");
             },
             child: Text('Compartilhar'),
+            style: styleBtnResponse,
           ),
-          ElevatedButton(
-            child: Text(
-              'Capture An Invisible Widget',
-            ),
-            onPressed: () {},
-          ),
+          SizedBox(height: 20),
           ElevatedButton(
             onPressed: widget.restart,
             child: Text('Reiniciar'),
+            style: styleBtnResponse,
           ),
+          SizedBox(height: 20),
         ],
       ),
     );

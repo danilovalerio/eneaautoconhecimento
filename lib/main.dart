@@ -27,7 +27,7 @@ class _AutoConhecimentoEneaAppState extends State<AutoConhecimentoEneaApp> {
 
   bool get temPerguntaSelecionada {
     print("$_perguntaAtual é menor que ${perguntas.length}");
-    return (_perguntaAtual < perguntas.length - 12);
+    return (_perguntaAtual < perguntas.length-11);
   }
 
   void _responder(int pontuacao) {

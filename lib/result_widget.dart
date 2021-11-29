@@ -1,14 +1,10 @@
-import 'dart:typed_data';
-
 import 'package:eneaautoconhecimento/constants.dart';
 import 'package:eneaautoconhecimento/eneagrama_model.dart';
 import 'package:eneaautoconhecimento/styles_theme.dart';
 import 'package:eneaautoconhecimento/tipo_enea_widget.dart';
+import 'package:eneaautoconhecimento/utils/helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
-
-import 'helper.dart';
 
 class ResultWidget extends StatefulWidget {
   final int pontuacao;

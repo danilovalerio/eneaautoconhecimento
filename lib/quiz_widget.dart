@@ -38,6 +38,33 @@ class QuizWidget extends StatelessWidget {
                     item['pontuacao'].toString(),
                   )));
         }).toList(),
+        Container(
+          padding: EdgeInsets.all(12),
+          child: Stack(
+            fit: StackFit.loose,
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 20,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.blue
+                  )
+                ),
+                child: LinearProgressIndicator(
+                  value: (perguntaSelecionada/(questions.length))*1,
+                  color: Colors.blue,
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                  semanticsLabel: "Loading",
+                  semanticsValue: 100.0.toStringAsFixed(2),
+                ),
+              ),
+              Text("Preenchimento...",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),),
+            ],
+          ),
+        ),
       ],
     );
   }
